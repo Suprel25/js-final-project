@@ -10,12 +10,27 @@ searchButton.addEventListener('click', () => {
     window.location.href = `search.html?search=${encodeURIComponent(searchTerm)}`;
 })
 
+
+
 function openFaq(event){
     const open = event.target
     const faqItem = open.parentElement.parentElement
     const answer  = faqItem.querySelector('.faq__answer')
-    answer.style.display = 'block'
+    open.classList.toggle('rotate')
+    if (getComputedStyle(answer).display === 'none'){
+        answer.style.display = 'block'
+    }
     
+    else {
+    answer.style.display = 'none'  
+    }
 }
+
+searchInput.addEventListener('keydown', (event)=>  {
+    if(event.key === 'Enter'){
+        searchButton.click()
+    }
+})
+
 
 

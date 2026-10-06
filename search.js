@@ -3,14 +3,24 @@ const searchResultsEl = document.querySelector(".search__results");
 async function searchResults() {
     const params = new URLSearchParams(window.location.search);
     const searchTerm = params.get("search");
+    document.body.classList +=(' loading')
     const search = await fetch(`https://www.omdbapi.com/?apikey=84a3a969&s=${searchTerm}`);
     const searchResult = await search.json();
     const movies = searchResult.Search;
-    searchResultsEl.innerHTML = movies.map(movie => searchResultsInnerHTML(movie)).join("");
+    setTimeout(() => {
+       searchResultsEl.innerHTML = movies.slice (0,7 ).map(movie => searchResultsInnerHTML(movie)).join(""); 
+       document.body.classList.remove('loading') 
+    }, 1000);
+   
 }
 
 function goBack(){
-    window.location.href="http://127.0.0.1:5500/index.html"
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve( window.location.href="http://127.0.0.1:5500/index.html")
+        }, 1000);
+    })
+   
 }
 
 function searchResultsInnerHTML(movie){
@@ -28,3 +38,4 @@ function searchResultsInnerHTML(movie){
 }
 
 searchResults();
+
