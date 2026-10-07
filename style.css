@@ -611,6 +611,15 @@ SEARCH PAGE
   
 }
 
+.filter__container{
+    max-width: 1200px;
+    width: 100%;
+    margin: 40px auto;
+    display: flex;
+    justify-content: end;
+    padding: 16px;
+}
+
 .movie-img__wrapper{
     width: 200px;
     margin-bottom: 100px;

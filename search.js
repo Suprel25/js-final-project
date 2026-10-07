@@ -1,4 +1,6 @@
 const searchResultsEl = document.querySelector(".search__results");
+let movies =[]
+const filter = document.querySelector('#filter')
 
 async function searchResults() {
     const params = new URLSearchParams(window.location.search);
@@ -6,7 +8,7 @@ async function searchResults() {
     document.body.classList +=(' loading')
     const search = await fetch(`https://www.omdbapi.com/?apikey=84a3a969&s=${searchTerm}`);
     const searchResult = await search.json();
-    const movies = searchResult.Search;
+    movies = searchResult.Search;
     setTimeout(() => {
        searchResultsEl.innerHTML = movies.slice (0,7 ).map(movie => searchResultsInnerHTML(movie)).join(""); 
        document.body.classList.remove('loading') 
@@ -38,4 +40,21 @@ function searchResultsInnerHTML(movie){
 }
 
 searchResults();
+
+filter.addEventListener("change", () => {
+
+    if (filter.value === "A_Z") {
+        movies.sort((a, b) => a.Title.localeCompare(b.Title));
+    }
+
+    if (filter.value === "Z_A") {
+        movies.sort((a, b) => b.Title.localeCompare(a.Title));
+    }
+
+    searchResultsEl.innerHTML = movies
+        .slice(0, 7)
+        .map(movie => searchResultsInnerHTML(movie))
+        .join("");
+});
+
 
