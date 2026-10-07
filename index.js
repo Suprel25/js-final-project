@@ -1,6 +1,6 @@
 // "https://www.omdbapi.com/?apikey=84a3a969&s=fast"
 
-// SEARCH BUTTON ADDED TO SEARCH BAR
+// SEARCH BUTTON ADDED TO SEARCH BAR.
 
 const searchInput = document.querySelector('#search-input')
 const searchButton = document.querySelector('#search__button')

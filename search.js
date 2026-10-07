@@ -10,7 +10,7 @@ async function searchResults() {
     setTimeout(() => {
        searchResultsEl.innerHTML = movies.slice (0,7 ).map(movie => searchResultsInnerHTML(movie)).join(""); 
        document.body.classList.remove('loading') 
-    }, 1000);
+    }, 1001);
    
 }
 
